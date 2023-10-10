@@ -26,3 +26,6 @@
 .checkoutProduct_rating{
     display: flex;
 }
+.checkoutProduct_quantity{
+	color: black;
+}

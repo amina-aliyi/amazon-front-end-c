@@ -22,6 +22,8 @@ function Checkout() {
 						image={item.image}
 						price={item.price}
 						rating={item.rating}
+						quantity={item.quantity} // Add quantity prop
+						uniqueId={item.uniqueId}
 					/>
 				))}
 			</div>

@@ -39,9 +39,10 @@ app.post("/payments/create", async (req, res) => {
 // - Listen command
 // exports.api = functions.https.onRequest(app);
 
-//  (http://127.0.0.1:5005/c-93147/us-central1/api). the baseURL
 app.listen(5500, (err) => {
 	if (!err) {
 		console.log("server is running on http://localhost:5500");
 	}
 });
+
+//  (http://127.0.0.1:5005/c-93147/us-central1/api). the baseURL

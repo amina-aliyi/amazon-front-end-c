@@ -21,15 +21,21 @@ function Product({ id, title, image, price, rating }) {
 
 	// console.log("this is a basket", basket);
 	const addToBasket = () => {
-		for (let i = 0; i < quantity; i++){
+		const totalPrice = price * quantity;
+		const uniqueId = Date.now(); // Generates a unique identifier based on the current timestamp
+
+		for (let i = 0; i < quantity; i++) {
+			// i < quantity has to be optional here coz no limitation for quantity
 			dispatch({
 				type: "ADD_TO_BASKET",
 				item: {
 					id: id,
 					title: title,
 					image: image,
-					price: price,
+					price: totalPrice,
 					rating: rating,
+					quantity: quantity,
+					uniqueId: uniqueId,
 				},
 			});
 		}
@@ -46,12 +52,11 @@ function Product({ id, title, image, price, rating }) {
 					{Array(rating)
 						.fill()
 						.map(() => (
-							
 							<GradeIcon className="yellow" />
 						))}
 				</div>
 			</div>
-			<img src={image} />
+			<img src={image} alt={title} />
 			<div className="product__quantity">
 				<button onClick={decrementQuantity}>-</button>
 				<p>{quantity}</p>

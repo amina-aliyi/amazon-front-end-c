@@ -25,24 +25,38 @@ const reducer = (state, action) => {
 					basket: [...state.basket, { ...action.item, quantity: 1 }],
 				};
 			}
+		case "EMPTY_BASKET":
+			return {
+				...state,
+				basket: [],
+			};
 
+		//
 		case "REMOVE_FROM_BASKET":
-			// Modify the logic to decrease the quantity if it's greater than 1
 			const productIndex = state.basket.findIndex(
-				(item) => item.id === action.id
+				(item) => item.uniqueId === action.uniqueId
 			);
+			// console.log(action.uniqueId);
+			// console.log(productIndex);
 			let newBasket = [...state.basket];
 			if (productIndex >= 0) {
-				if (newBasket[productIndex].quantity > 1) {
+				if (newBasket[productIndex].quantity >1) {
+					// Decrease the quantity by 1
 					newBasket[productIndex].quantity -= 1;
-					// console.log(productIndex);
-					
+					// Subtract the price of one item from the total price
+		 newBasket[productIndex].price -=
+				newBasket[productIndex].price / (newBasket[productIndex].quantity + 1);
+
+
 				} else {
 					// Remove the product from the basket if quantity is 1
 					newBasket.splice(productIndex, 1);
 				}
 			}
-			return { ...state, basket: newBasket };
+		return { ...state, basket: newBasket };
+			
+
+		//
 		case "SET_USER":
 			return {
 				...state,

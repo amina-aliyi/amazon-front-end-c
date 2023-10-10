@@ -6,6 +6,7 @@ import CheckoutProduct from "./CheckoutProduct";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import CurrencyFormat from "react-currency-format";
 import axios from "./axios";
+import {db} from './FireBase'
 function Payment() {
 	const [{ basket, user }, dispatch] = useStateValue();
 
@@ -31,7 +32,7 @@ function Payment() {
 			const response = await axios({
 				method: "post",
 				// Stripe expects the total in a currencies subunits
-				url: `/payments/create?total=${getBasketTotal(basket) * 100}`,
+				url: `/payments/create?total=${parseInt(getBasketTotal(basket) * 100)}`,
 			});
 			setClientSecret(response.data.clientSecret);
 		};
@@ -53,9 +54,27 @@ function Payment() {
 			})
 
 			.then(({ paymentIntent }) => {
+// payment confirmed...
+
+				
+        db.collection("users")
+					.doc(user?.uid)
+					.collection("orders")
+					.doc(paymentIntent.id)
+					.set({
+						basket: basket,
+						amount: paymentIntent.amount,
+						created: paymentIntent.created,
+					});
+				
+				
 				setSucceeded(true);
 				setError(null);
 				setProcessing(false);
+
+				dispatch({
+					type: 'EMPTY_BASKET',
+				})
 
 				navigate("/orders");
 			});
@@ -77,7 +96,7 @@ function Payment() {
 					<div className="payment__address">
 						<p>{user?.email}</p>
 						<p> 123 React Line</p>
-						<p>Chicago</p>
+						<p>Pretoria</p>
 					</div>
 				</div>
 				<div className="payment__section">

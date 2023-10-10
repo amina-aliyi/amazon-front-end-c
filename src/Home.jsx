@@ -50,16 +50,15 @@ function Home() {
 					/>
 					<Product
 						id="12328854288"
-						title="Home $ Kitchens Under $30"
+						title="Home & Kitchens "
 						price={118.99}
 						rating={5}
 						image="https://images-na.ssl-images-amazon.com/images/G/01/US-hq/2022/img/Amazon_Exports/XCM_CUTTLE_1469391_2584745_379x304_1X_en_US._SY304_CB609304299_.jpg"
 					/>
-					{/* <Product />
-					<Product /> */}
+		
 				</div>
 				<div className="home_row">
-					{/* <Product /> */}
+				
 					<Product
 						id="123674028888"
 						title="Your Dream Confort starts Here, Just For Your Home"

@@ -10,25 +10,26 @@ import { auth } from "./FireBase";
 import Payment from "./payment";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
+import Orders from "./Orders";
 
 const promise = loadStripe(
 	"pk_test_51NvldtEEr4A1Kzsa6np2JzP6srAGmDMAlTCIHsKYacGUEtlsgJGopGzP9fRSu7q3qLNXSc7i1inOoeBC5NihxhNz00fZGVayv6"
 );
 function App() {
-	const [{ }, dispatch] = useStateValue();
+	const [{}, dispatch] = useStateValue();
 	useEffect(() => {
 		auth.onAuthStateChanged((authUser) => {
 			if (authUser) {
 				// there is logged in user
 				// the action ganna be setting the logged in user.. => action.user
 				dispatch({
-					type: 'SET_USER',
+					type: "SET_USER",
 					user: authUser,
 				});
 			} else {
 				// the user is logged out....empyt that space
 				dispatch({
-					type: 'SET_USER',
+					type: "SET_USER",
 					user: null,
 				});
 			}
@@ -63,6 +64,14 @@ function App() {
 						element={
 							<>
 								<Header /> <Checkout />
+							</>
+						}
+					/>
+					<Route
+						path="/Orders"
+						element={
+							<>
+								<Header /> <Orders />
 							</>
 						}
 					/>

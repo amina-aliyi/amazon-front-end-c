@@ -22,7 +22,7 @@
 
 .arrow {
   position: absolute;
-  top: 15%;
+  top: 35%;
   background-color: rgba(0, 0, 0, 0.5);
   color: #fff;
   border: none;
@@ -43,7 +43,7 @@
   transform: translateX(0);
 }
 
-/* Add more styles as needed */
+
 .image-banner {
   position: relative;
 }
@@ -54,10 +54,15 @@
   left: 25%;
   transform: translate(-50%, -50%);
   font-weight: bold;
-  font-size: 34px; /* Adjust the font size as needed */
-  color: black; /* Text color */
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Optional text shadow */
-  /* background-color: rgba(0, 0, 0, 0.7); Optional background color */
-  padding: 10px; /* Optional padding around text */
-  border-radius: 5px; /* Optional border-radius for a rounded background */
+  font-size: 34px;
+  color: black; 
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); 
+  padding: 10px; 
+  border-radius: 5px;
+}
+
+.carousel:focus,
+.carousel-control-prev:focus,
+.carousel-control-next:focus {
+  outline: none !important;
 }
