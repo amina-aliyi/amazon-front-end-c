@@ -7,6 +7,7 @@
   top: 0;
   z-index: 100;
   width: 100%;
+  min-width: fit-content;
 }
 .header__logo {
   width: 100px;
